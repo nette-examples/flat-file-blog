@@ -1,0 +1,18 @@
+{templateType App\Module\Front\Auth\AuthTemplate}
+{block content}
+<div class="container">
+    <h1 n:block="title">Account</h1>
+    <p>
+        Username: nette<br/>
+        Password: framework
+    </p>
+    {if $user->isLoggedIn()}
+        <a n:href="logout!">Log out</a>
+    {else}
+        <div class="row">
+            <div class="col-md-6">
+                {control signInForm}
+            </div>
+        </div>
+    {/if}
+</div>

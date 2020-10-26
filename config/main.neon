@@ -1,0 +1,20 @@
+application:
+    errorPresenter: Front:Error
+    mapping:
+        *: ['App\Module', '*', '*\*Presenter']
+
+
+session:
+    expiration: 30 days
+
+
+services:
+    routerFactory: App\Router\RouterFactory
+    router: @routerFactory::create
+
+
+includes:
+    - model.neon
+    - front.neon
+    - admin.neon
+    - users.neon

@@ -1,0 +1,6 @@
+search:
+    admin:
+        in: %appDir%/Module/Admin
+        classes:
+            - *Factory
+            - *Component

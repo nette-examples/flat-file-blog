@@ -1,0 +1,8 @@
+{templateType App\Module\Admin\Article\ArticleTemplate}
+{block content}
+<div class="container">
+    <h2 n:block="title">Edit article {$article->getTitle()}</h2>
+    <div class="mt-4">
+        {control articleForm}
+    </div>
+</div>

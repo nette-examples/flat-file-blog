@@ -1,0 +1,9 @@
+{templateType App\Module\Front\Homepage\HomepageTemplate}
+{block content}
+<div class="container">
+    <div n:foreach="$articles as $article" class="mb-4">
+        <h2><a n:href="Article:default $article->getSlug()">{$article->getTitle()}</a></h2>
+        <p class="text-muted">{$article->getAuthor()}, <i>{$article->getCreatedAt()->format('Y-m-d H:i:s')}</i> <a n:if="$user->isLoggedIn()" n:href=":Admin:Article:edit $article->getSlug()">[edit]</a></p>
+        <p>{$article->getContent()|noescape}</p>
+    </div>
+</div>

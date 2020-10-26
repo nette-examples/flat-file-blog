@@ -1,0 +1,6 @@
+search:
+	front:
+		in: %appDir%/Module/Front
+		classes:
+			- *Factory
+			- *Component

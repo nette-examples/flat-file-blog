@@ -1,0 +1,9 @@
+search:
+	model:
+		in: %appDir%/Model
+		classes:
+			- *Facade
+			- *Factory
+			- *Repository
+			- *Provider
+			- *Manager
