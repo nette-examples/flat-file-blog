@@ -35,5 +35,6 @@ abstract class BaseAdminPresenter extends Presenter
 	public function handleLogout(): void
 	{
 		$this->getUser()->logout();
+		$this->redirect('this');
 	}
 }

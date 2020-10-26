@@ -24,5 +24,6 @@ abstract class BaseFrontPresenter extends Presenter
 	public function handleLogout(): void
 	{
 		$this->getUser()->logout();
+		$this->redirect('this');
 	}
 }
