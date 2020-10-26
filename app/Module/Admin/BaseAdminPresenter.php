@@ -12,6 +12,17 @@ use Nette\Application\UI\Presenter;
  */
 abstract class BaseAdminPresenter extends Presenter
 {
+	public function startup()
+	{
+		parent::startup();
+
+		// User must be logged in to enter administration
+		if (!$this->user->isLoggedIn()) {
+			$this->flashMessage('You shall not pass', 'danger');
+			$this->redirect(':Front:Auth:default');
+		}
+	}
+
 	public function beforeRender(): void
 	{
 		$this->setLayout(__DIR__ . '/@Templates/@Layout/layout.latte');
@@ -19,12 +30,6 @@ abstract class BaseAdminPresenter extends Presenter
 		
 		// Here is possible to assign common variables among presenters, user is just an example, nette would automatically passed user to template anyway
 		$this->template->user = $this->getUser();
-		
-		// User must be logged in to enter administration
-		if (!$this->user->isLoggedIn()) {
-			$this->flashMessage('You shall not pass', 'danger');
-			$this->redirect(':Front:Auth:default');
-		}
 	}
 
 	public function handleLogout(): void
