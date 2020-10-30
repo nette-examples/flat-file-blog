@@ -27,7 +27,10 @@ class ArticleRepository
 		
 		return new Article($this->articleDataFactory->createFromFile(new SplFileInfo($path)));
 	}
-	
+
+	/**
+	 * @return Article[]
+	 */
 	public function getAll(): array
 	{
 		$articles = [];
@@ -35,6 +38,23 @@ class ArticleRepository
 		/** @var SplFileInfo $file */
 		foreach (Finder::findFiles('*.md')->from(__DIR__ . '/../../../storage/articles') as $file) {
 			$articles[] = new Article($this->articleDataFactory->createFromFile($file));
+		}
+		
+		return $articles;
+	}
+
+	/**
+	 * @return Article[]
+	 */
+	public function getSearchResults(string $query): array
+	{
+		$articles = [];
+
+		foreach ($this->getAll() as $article) {
+			$match = similar_text($lowerQuery = strtolower($query), $lowerTitle = strtolower($article->getTitle()));
+			if (str_contains($lowerTitle, $lowerQuery) || $match >= 3.5) {
+				$articles[] = $article;
+			}
 		}
 		
 		return $articles;
