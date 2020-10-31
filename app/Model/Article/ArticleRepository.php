@@ -8,7 +8,7 @@ use App\Model\Article\Exception\ArticleNotFoundException;
 use Nette\Utils\Finder;
 use SplFileInfo;
 
-class ArticleRepository
+abstract class ArticleRepository
 {
 	public function __construct(
 		protected ArticleDataFactory $articleDataFactory
