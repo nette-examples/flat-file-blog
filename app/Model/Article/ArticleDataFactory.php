@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Model\Article;
 
-use App\Module\Admin\Article\Form\Article\ArticleFormData;
 use Nette\Neon\Neon;
 use Nette\Utils\DateTime;
 use Nette\Utils\FileSystem;
@@ -31,14 +30,14 @@ class ArticleDataFactory
 		return $data;
 	}
 	
-	public function createFromFormData(ArticleFormData $formData): ArticleData
+	public function createFromFormData(array $formData): ArticleData
 	{
 		$data = new ArticleData();
 		
-		$data->slug = Strings::webalize($formData->title);
-		$data->title = $formData->title;
-		$data->author = $formData->author;
-		$data->content = $formData->content;
+		$data->slug = Strings::webalize($formData['title']);
+		$data->title = $formData['title'];
+		$data->author = $formData['author'];
+		$data->content = $formData['content'];
 		$data->createdAt = new DateTime();
 		$data->updatedAt = new DateTime();
 

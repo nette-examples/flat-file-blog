@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Module\Admin\Article\Form\Article;
+namespace App\Module\Admin\Article\Form;
 
 use App\Model\Article\Article;
 use App\UI\Form\Renderer\BootstrapRenderer;
@@ -31,7 +31,6 @@ class ArticleFormFactory
 			$form->addSubmit('submit', 'Create');
 		}
 		
-		$form->setMappedType(ArticleFormData::class);
 		$form->setRenderer(new BootstrapRenderer());
 		
 		return $form;

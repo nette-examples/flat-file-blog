@@ -8,8 +8,7 @@ use App\Model\Article\Article;
 use App\Model\Article\ArticleDataFactory;
 use App\Model\Article\ArticleFacade;
 use App\Model\Article\Exception\ArticleNotFoundException;
-use App\Module\Admin\Article\Form\Article\ArticleFormData;
-use App\Module\Admin\Article\Form\Article\ArticleFormFactory;
+use App\Module\Admin\Article\Form\ArticleFormFactory;
 use App\Module\Admin\BaseAdminPresenter;
 use Nette\Application\UI\Form;
 
@@ -56,14 +55,16 @@ class ArticlePresenter extends BaseAdminPresenter
 	{
 		$form = $this->articleFormFactory->create($this->article);
 		
-		$form->onSuccess[] = function (Form $form, ArticleFormData $formData): void {
+		$form->onSuccess[] = function (array $data): void {
 			if ($this->article !== null) {
-				$this->articleFacade->edit($this->article->getSlug(), $this->articleDataFactory->createFromFormData($formData));
+				$this->articleFacade->edit($this->article->getSlug(), $this->articleDataFactory->createFromFormData($data));
 				$this->flashMessage('Article was successfully updated', 'success');
+				
 			} else {
-				$this->articleFacade->create($this->articleDataFactory->createFromFormData($formData));
+				$this->articleFacade->create($this->articleDataFactory->createFromFormData($data));
 				$this->flashMessage('Article was successfully created', 'success');
 			}
+			
 			$this->redirect('this');
 		};
 		

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Module\Front\Auth\Form\SignIn;
+namespace App\Module\Front\Auth\Form;
 
 use App\UI\Form\Renderer\BootstrapRenderer;
 use Nette\Application\UI\Form;
@@ -21,8 +21,6 @@ class SignInFormFactory
 		
 		$form->addSubmit('submit', 'Log in');
 		
-		// This is not necessary if you want just plain array or array object in onSuccess callback
-		$form->setMappedType(SignInFormData::class);
 		$form->setRenderer(new BootstrapRenderer());
 		
 		return $form;
