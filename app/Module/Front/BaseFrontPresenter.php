@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Module\Front;
 
+use Nette\Application\AbortException;
 use Nette\Application\Helpers;
 use Nette\Application\UI\Presenter;
 
@@ -21,6 +22,9 @@ abstract class BaseFrontPresenter extends Presenter
 		$this->template->user = $this->getUser(); 
 	}
 
+	/**
+	 * @throws AbortException
+	 */
 	public function handleLogout(): void
 	{
 		$this->getUser()->logout();

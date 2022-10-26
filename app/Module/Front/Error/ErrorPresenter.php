@@ -13,6 +13,7 @@ use Nette\Application\Responses\CallbackResponse;
 use Nette\Application\Responses\ForwardResponse;
 use Nette\DI\Attributes\Inject;
 use Nette\Http\IRequest;
+use Nette\Http\IResponse;
 use Nette\SmartObject;
 use Tracy\ILogger;
 
@@ -33,7 +34,7 @@ class ErrorPresenter implements IPresenter
 
 		$this->logger->log($exception, ILogger::EXCEPTION);
 
-		return new CallbackResponse(function (IRequest $httpRequest, \Nette\Http\IResponse $httpResponse): void {
+		return new CallbackResponse(function (IRequest $httpRequest, IResponse $httpResponse): void {
 			if (preg_match('#^text/html(?:;|$)#', (string) $httpResponse->getHeader('Content-Type'))) {
 				$file = __DIR__ . '/../@Templates/Error/500.phtml';
 				if (is_file($file)) {

@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\UI\Form\Renderer;
 
 use DateInput;
+use Nette\Forms\Control;
 use Nette\Forms\Controls\BaseControl;
 use Nette\Forms\Controls\Checkbox;
 use Nette\Forms\Controls\CheckboxList;
 use Nette\Forms\Controls\RadioList;
 use Nette\Forms\Controls\UploadControl;
-use Nette\Forms\IControl;
 use Nette\Forms\Rendering\DefaultFormRenderer;
 use Nette\Forms\Controls;
 use Nette\Utils\Html;
@@ -56,7 +56,7 @@ class BootstrapRenderer extends DefaultFormRenderer
 		return parent::renderControls($parent);
 	}
 
-	public function renderPair(IControl $control): string
+	public function renderPair(Control $control): string
 	{
 		$this->controlsInit();
 
@@ -155,13 +155,13 @@ class BootstrapRenderer extends DefaultFormRenderer
 		return parent::renderPairMulti($controls);
 	}
 
-	public function renderLabel(IControl $control): Html
+	public function renderLabel(Control $control): Html
 	{
 		$this->controlsInit();
 		return parent::renderLabel($control);
 	}
 
-	public function renderControl(IControl $control): Html
+	public function renderControl(Control $control): Html
 	{
 		$this->controlsInit();
 		return parent::renderControl($control);
