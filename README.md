@@ -3,7 +3,10 @@ This repository demonstrates how to use multiple modules in nette application
 
 ## Run the blog
 Minimum required PHP version is **8.0**
+```bash
+composer update
 ```
+```bash
 php -S localhost:80 -t public/
 ```
 
