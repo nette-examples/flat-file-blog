@@ -7,10 +7,11 @@ namespace App\Module\Front\Error;
 use Nette\Application\BadRequestException;
 use Nette\Application\Helpers;
 use Nette\Application\IPresenter;
-use Nette\Application\IResponse;
 use Nette\Application\Request;
+use Nette\Application\Response;
 use Nette\Application\Responses\CallbackResponse;
 use Nette\Application\Responses\ForwardResponse;
+use Nette\DI\Attributes\Inject;
 use Nette\Http\IRequest;
 use Nette\SmartObject;
 use Tracy\ILogger;
@@ -19,10 +20,9 @@ class ErrorPresenter implements IPresenter
 {
 	use SmartObject;
 
-	/** @inject */
-	public ILogger $logger;
+	#[Inject] public ILogger $logger;
 
-	public function run(Request $request): IResponse
+	public function run(Request $request): Response
 	{
 		$exception = $request->getParameter('exception');
 

@@ -8,6 +8,7 @@ use App\Model\Article\Article;
 use App\Model\Article\ArticleFacade;
 use App\Model\Article\Exception\ArticleNotFoundException;
 use App\Module\Front\BaseFrontPresenter;
+use Nette\Application\BadRequestException;
 
 /**
  * @property ArticleTemplate $template
@@ -21,7 +22,10 @@ class ArticlePresenter extends BaseFrontPresenter
 	) {
 		parent::__construct();
 	}
-	
+
+	/**
+	 * @throws BadRequestException
+	 */
 	public function actionDefault(string $slug): void
 	{
 		try {

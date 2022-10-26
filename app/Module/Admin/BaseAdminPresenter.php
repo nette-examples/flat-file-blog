@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Module\Admin;
 
+use Nette\Application\AbortException;
 use Nette\Application\Helpers;
 use Nette\Application\UI\Presenter;
 
@@ -12,12 +13,15 @@ use Nette\Application\UI\Presenter;
  */
 abstract class BaseAdminPresenter extends Presenter
 {
+	/**
+	 * @throws AbortException
+	 */
 	public function startup()
 	{
 		parent::startup();
 
 		// User must be logged in to enter administration
-		if (!$this->user->isLoggedIn()) {
+		if (!$this->getUser()->isLoggedIn()) {
 			$this->flashMessage('You shall not pass', 'danger');
 			$this->redirect(':Front:Auth:default');
 		}
@@ -32,6 +36,9 @@ abstract class BaseAdminPresenter extends Presenter
 		$this->template->user = $this->getUser();
 	}
 
+	/**
+	 * @throws AbortException
+	 */
 	public function handleLogout(): void
 	{
 		$this->getUser()->logout();

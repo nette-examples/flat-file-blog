@@ -10,6 +10,7 @@ use App\Model\Article\ArticleFacade;
 use App\Model\Article\Exception\ArticleNotFoundException;
 use App\Module\Admin\Article\Form\ArticleFormFactory;
 use App\Module\Admin\BaseAdminPresenter;
+use Nette\Application\AbortException;
 use Nette\Application\UI\Form;
 
 /**
@@ -70,7 +71,10 @@ class ArticlePresenter extends BaseAdminPresenter
 		
 		return $form;
 	}
-	
+
+	/**
+	 * @throws AbortException
+	 */
 	public function handleDelete(string $slug): void
 	{
 		$this->articleFacade->delete($slug);
